@@ -9,9 +9,11 @@ router.post('/parser', function (req, res) {
 
     var validateNumber = function(phoneNumber){
         //var re1 = /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/;
-        var re2 = /^(\([0-9]{3}\)|[0-9]{3}-)[0-9]{3}-[0-9]{4}$/;
-        var re3 = /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/;
-        return (re2.match(phoneNumber) || re3.match(phoneNumber));
+        //var re2 = /^(\([0-9]{3}\)|[0-9]{3}-)[0-9]{3}-[0-9]{4}$/;
+        //var re3 = /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/;
+        //return (re2.match(phoneNumber) || re3.match(phoneNumber));
+        var re = /(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}/;
+        return phoneNumber.match(re)[0];
     };
 
     var validateEmail = function(email){
@@ -23,7 +25,7 @@ router.post('/parser', function (req, res) {
 
     JSON.parse(req.body).name.forEach(function (f) {
 
-        var filename = f; //(req.files.file0.name);
+        var filename = f;
         var file = filename.slice(0, filename.length - 3) + 'txt';
 
 
@@ -40,11 +42,12 @@ router.post('/parser', function (req, res) {
             }
             var resumeData = d.join('');
             console.log(validateEmail(resumeData));
+            console.log(validateNumber(resumeData));
             var email = validateEmail(resumeData);
-            var phone = 0; //validateNumber(resumeData);
+            var phone = validateNumber(resumeData);
 
             new filesModel({filename: file,email: email,phone: phone}).save(function(err, results) {
-                if (err) res.status(500).json(err);
+                if (err) console.log(err);
                 else {
                     console.log(results);
                 }

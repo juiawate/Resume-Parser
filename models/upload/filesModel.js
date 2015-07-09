@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 var Files = new Schema({
     filename: String,
     email: String,
-    phone: Number
+    phone: String
 });
 
 module.exports = mongoose.model('Files', Files);
