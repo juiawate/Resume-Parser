@@ -1,0 +1,15 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#drop {
+  min-height: 150px;
+  width: 500px;
+  border: 1px dashed gray;
+  color: gray;
+}
