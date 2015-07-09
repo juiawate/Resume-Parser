@@ -26,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/', require('./routes/upload'));
+app.use('/', require('./routes/parser'));
 
 //mongo connection
 mongoose.connect('mongodb://localhost/test', function(error){

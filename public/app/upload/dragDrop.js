@@ -31,9 +31,9 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log('promise resolved data: ',data);
             //, createPromise('/upload','post',formdata)
 
-            console.log(JSON.stringify(data));
+            //console.log(JSON.stringify(data));
             var xhr = new XMLHttpRequest();
-            xhr.open('post','/upload');
+            xhr.open('post','/parser');
             xhr.setRequestHeader('content-type', 'application/json');
             xhr.send(JSON.stringify(data));
 
