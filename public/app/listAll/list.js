@@ -1,14 +1,19 @@
 
 document.addEventListener('DOMContentLoaded', function () {
-    var list = document.getElementById('list');
+    var btn = document.querySelector('button');
+    btn.addEventListener('click', function () {
+        var list = document.getElementById('list');
+        list.innerHTML = '';
 
-    makeAjaxCall('/list','get',null, function (results) {
-        console.log(JSON.parse(results.responseText));
-        var ul = createElement('ul',list);
-        Array.prototype.forEach.call(JSON.parse(results.responseText), function(r) {
-            var li = createElement('li',ul,'', r.email+' : '+ r.phone);
+        makeAjaxCall('/list','get',null, function (results) {
+            console.log(JSON.parse(results.responseText));
+            var ul = createElement('ul',list);
+            Array.prototype.forEach.call(JSON.parse(results.responseText), function(r) {
+                var li = createElement('li',ul,'', r.email+' : '+ r.phone);
+            });
         });
     });
+
 
     function createElement(elementType, parent, className, innerHTML, custom) {
         var element = document.createElement(elementType);
