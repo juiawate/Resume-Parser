@@ -27,6 +27,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/', require('./routes/upload'));
 app.use('/', require('./routes/parser'));
+app.use('/', require('./routes/list'));
 
 //mongo connection
 mongoose.connect('mongodb://localhost/test', function(error){
